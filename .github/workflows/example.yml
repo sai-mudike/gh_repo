@@ -1,0 +1,20 @@
+name: events demo 1
+on: ...
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: output event code
+              run: echo f" {{ toJSON(github.events)}}"
+            - name: get code
+              uses: actions/checkout@v7
+            - name: get node
+              uses: actions/setup-node@v7
+              with:
+                node-version: 18
+            - name: get dependencies
+              run: npm ci
+            - name: test 
+              run: npm run test
+            - name: deploy
+              run: echo "deploying"
